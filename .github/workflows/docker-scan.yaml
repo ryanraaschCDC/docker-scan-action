@@ -13,6 +13,7 @@ jobs:
       - name: Build the container image
         run: docker build . --file Dockerfile --tag localbuild/testimage:latest
       - uses: anchore/scan-action@v3
+        id: scan
         with:
           image: "localbuild/testimage:latest"
           fail-build: false #change to true to fail if security issues found
