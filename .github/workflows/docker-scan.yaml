@@ -8,9 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
-      actions: read
-      contents: read
+    #permissions: 
+    #  actions: read
+    #  contents: read
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Build the container image
@@ -21,9 +21,5 @@ jobs:
           image: "localbuild/testimage:latest"
           fail-build: false #change to true to fail if security issues found
           severity-cutoff: critical
-      - name: upload Anchore scan SARIF report
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Inspect action SARIF report
         run: cat ${{ steps.scan.outputs.sarif }}
