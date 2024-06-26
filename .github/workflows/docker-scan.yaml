@@ -8,11 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    #permissions: 
-    #  actions: read
-    #  contents: read
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/checkout@v4
       - name: Build the container image
         run: docker build . --file Dockerfile --tag localbuild/testimage:latest
       - uses: anchore/scan-action@v3
@@ -23,5 +20,3 @@ jobs:
           severity-cutoff: critical
           output-format: table
           by-cve: true
-      - name: Inspect action SARIF report
-        run: cat ${{ steps.scan.outputs.sarif }}
