@@ -16,4 +16,4 @@ jobs:
         with:
           image: "localbuild/testimage:latest"
           fail-build: true
-          severity-cutoff: critical
+          #severity-cutoff: critical
