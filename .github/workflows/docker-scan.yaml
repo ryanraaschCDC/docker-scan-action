@@ -1,7 +1,10 @@
 name: Container Image CI
-on: [push, workflow_dispatch]
-paths:
-  - Dockerfile
+on:
+  - push
+    paths:
+      - Dockerfile
+  - workflow_dispatch
+
 jobs:
   build:
     runs-on: ubuntu-latest
