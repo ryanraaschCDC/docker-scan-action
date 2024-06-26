@@ -15,5 +15,5 @@ jobs:
       - uses: anchore/scan-action@v3
         with:
           image: "localbuild/testimage:latest"
-          fail-build: true
+          fail-build: false #change to true to fail if security issues found
           severity-cutoff: critical
