@@ -18,7 +18,5 @@ jobs:
           image: "localbuild/testimage:latest"
           fail-build: false #change to true to fail if security issues found
           severity-cutoff: critical
-          output-format: json
+          output-format: table
           by-cve: true
-      - name: Inspect action SARIF report
-        run: cat ${{ steps.scan.outputs.sarif }}
