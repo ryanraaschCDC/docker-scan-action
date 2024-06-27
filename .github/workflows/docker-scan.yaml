@@ -20,5 +20,5 @@ jobs:
           severity-cutoff: critical
           output-format: json
           by-cve: true
-      - name: Inspect action JSON report
-        run: cat ${{ steps.scan.outputs.json }}
+      - name: Inspect action SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}
