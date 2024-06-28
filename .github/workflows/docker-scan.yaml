@@ -20,11 +20,7 @@ jobs:
           severity-cutoff: critical
           output-format: json
           by-cve: true
-      - uses: austenstone/json-to-csv@main
-        id: csv
+      - uses: actions/upload-artifact@v4
         with:
-          json: ${{ steps.scan.outputs.json }}
-          create-artifact: true
-          artifact-name: docker_scan_csv
-      - run: echo "${{ steps.csv.outputs.csv }}"
-      - run: echo "${{ steps.csv.outputs.artifact-name }}"
+          path: ${{ steps.scan.outputs.json }}
+          
