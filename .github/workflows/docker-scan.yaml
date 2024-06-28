@@ -23,5 +23,8 @@ jobs:
       - uses: austenstone/json-to-csv@main
         id: csv
         with:
-          json-artifact-name: ${{ steps.scan.outputs.json }}
+          json: ${{ steps.scan.outputs.json }}
+          create-artifact: true
+          artifact-name: docker_scan_csv
       - run: echo "${{ steps.csv.outputs.csv }}"
+      - run: echo "${{ steps.csv.outputs.artifact-name }}"
