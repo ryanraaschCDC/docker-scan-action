@@ -23,4 +23,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: ${{ steps.scan.outputs.json }}
+          compression-level: 0
           
