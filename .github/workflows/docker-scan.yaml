@@ -22,6 +22,7 @@ jobs:
           by-cve: true
       - uses: actions/upload-artifact@v4
         with:
+          name: docker-scan-results
           path: ${{ steps.scan.outputs.json }}
           compression-level: 1
           
