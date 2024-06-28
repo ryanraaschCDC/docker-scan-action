@@ -18,10 +18,10 @@ jobs:
           image: "localbuild/testimage:latest"
           fail-build: false #change to true to fail if security issues found
           severity-cutoff: critical
-          output-format: json
+          output-format: sarif
           by-cve: true
       - uses: actions/upload-artifact@v4
         with:
-          path: ${{ steps.scan.outputs.json }}
+          path: ${{ steps.scan.outputs.sarif }}
           compression-level: 0
           
