@@ -27,7 +27,7 @@ jobs:
           path: ${{ steps.scan.outputs.json }}
           compression-level: 1
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11.8
           run: pip install argparse pandas
@@ -35,5 +35,5 @@ jobs:
         env:
           path: ${{ steps.scan.outputs.json }}
         run: |
-          echo $path
+          python -c "print $path"
           
