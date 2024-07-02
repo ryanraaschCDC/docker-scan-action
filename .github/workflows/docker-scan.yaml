@@ -30,10 +30,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: 3.11.8
+      - name: pip install
+        run:  pip install argparse pandas
       - name: Print Results
         env:
           path: ${{ steps.scan.outputs.json }}
         run: |
-          pip install argparse pandas
-          python ../actions/show_results.py -f '$path'
+          python ./.github/actions/show_results.py -f '$path'
           
