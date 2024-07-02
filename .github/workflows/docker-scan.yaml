@@ -35,5 +35,5 @@ jobs:
           path: ${{ steps.scan.outputs.json }}
         run: |
           pip install argparse pandas
-          python -c "print '$path'"
+          python ../actions/show_results.py -f '$path'
           
