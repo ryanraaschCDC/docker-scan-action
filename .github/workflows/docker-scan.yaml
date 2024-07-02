@@ -21,7 +21,7 @@ jobs:
           output-format: json
           by-cve: true
       - uses: actions/upload-artifact@v4
-        if: ${{ always() }}
+        if: ${{ success() || failure() }}
         with:
           name: docker-scan-results
           path: ${{ steps.scan.outputs.json }}
