@@ -26,4 +26,14 @@ jobs:
           name: docker-scan-results
           path: ${{ steps.scan.outputs.json }}
           compression-level: 1
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+          run: pip install argparse pandas
+      - name: Print Results
+        env:
+          path: ${{ steps.scan.outputs.json }}
+        run: |
+          echo $path
           
