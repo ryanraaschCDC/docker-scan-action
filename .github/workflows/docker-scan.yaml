@@ -39,5 +39,5 @@ jobs:
         env:
           path: ${{ steps.scan.outputs.json }}
         run: |
-          python ../actions/show_results.py -f $path
+          python ./.github/actions/show_results.py -f $path
           
