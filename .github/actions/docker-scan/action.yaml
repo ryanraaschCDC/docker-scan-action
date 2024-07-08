@@ -24,9 +24,11 @@ runs:
         python-version: 3.11.8
     - name: pip install
       if: ${{ success() || failure() }}
+      shell: bash
       run:  pip install argparse pandas
     - name: Print Results
       if: ${{ success() || failure() }}
+      shell: bash
       env:
         path: ${{ steps.scan.outputs.json }}
       run: |
