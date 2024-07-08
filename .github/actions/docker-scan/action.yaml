@@ -4,10 +4,30 @@ runs:
   using: composite
   steps:
     - uses: anchore/scan-action@v3
-      id: scan_action
+      id: scan
       with:
         image: "localbuild/testimage:latest"
         fail-build: true #change to true to fail if security issues found
         severity-cutoff: high
         output-format: json
         by-cve: true
+    - uses: actions/upload-artifact@v4
+      if: ${{ success() || failure() }}
+      with:
+        name: docker-scan-results
+        path: ${{ steps.scan.outputs.json }}
+        compression-level: 1
+    - name: setup python
+      uses: actions/setup-python@v5
+      if: ${{ success() || failure() }}
+      with:
+        python-version: 3.11.8
+    - name: pip install
+      if: ${{ success() || failure() }}
+      run:  pip install argparse pandas
+    - name: Print Results
+      if: ${{ success() || failure() }}
+      env:
+        path: ${{ steps.scan.outputs.json }}
+      run: |
+        python ./.github/actions/show_results.py -f $path
