@@ -1,8 +1,10 @@
 name: Container Image CI
 on:
+  pull-request:
   push:
     paths:
       - Dockerfile
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
