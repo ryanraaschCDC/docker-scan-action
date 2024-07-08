@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     paths:
-      - Dockerfile
+      - src/Dockerfile
       - '.github/workflows/**'
   workflow_dispatch:
 
@@ -42,4 +42,3 @@ jobs:
           path: ${{ steps.scan.outputs.json }}
         run: |
           python ./.github/actions/show_results.py -f $path
-          
