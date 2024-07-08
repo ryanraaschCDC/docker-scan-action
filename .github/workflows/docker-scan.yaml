@@ -1,8 +1,10 @@
 name: Docker Scan
 on:
+  pull_request:
   push:
     paths:
       - Dockerfile
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
