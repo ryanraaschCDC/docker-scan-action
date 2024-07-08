@@ -1,9 +1,9 @@
 name: docker_scan
 description: action for docker scan using anchore/grype
 runs:
-  using: composite
   steps:
     - uses: anchore/scan-action@v3
+      id: scan_action
       with:
         image: "localbuild/testimage:latest"
         fail-build: true #change to true to fail if security issues found
