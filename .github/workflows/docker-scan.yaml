@@ -21,7 +21,7 @@ jobs:
         if: ${{ success() || failure() }}
         with:
           name: docker-scan-results
-          path: ${{ steps.scan_action.outputs.json }}
+          path: ${{ steps.scan.outputs.json }}
           compression-level: 1
       - name: setup python
         uses: actions/setup-python@v5
