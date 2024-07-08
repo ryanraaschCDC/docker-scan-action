@@ -4,7 +4,6 @@ runs:
   using: composite
   steps:
     - uses: anchore/scan-action@v3
-      id: scan
       with:
         image: "localbuild/testimage:latest"
         fail-build: true #change to true to fail if security issues found

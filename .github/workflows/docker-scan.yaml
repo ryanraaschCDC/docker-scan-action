@@ -15,6 +15,7 @@ jobs:
       - name: Build the container image
         run: docker build . --file src/Dockerfile --tag localbuild/testimage:latest
       - name: run docker scan
+        id: scan
         uses: ./.github/actions/docker-scan
       - uses: actions/upload-artifact@v4
         if: ${{ success() || failure() }}
