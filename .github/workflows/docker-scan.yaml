@@ -1,6 +1,6 @@
 name: Container Image CI
 on:
-  pull-request:
+  pull_request:
   push:
     paths:
       - Dockerfile
