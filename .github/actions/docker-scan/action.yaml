@@ -17,7 +17,7 @@ runs:
       if: ${{ success() || failure() }}
       with:
         name: docker-scan-results
-        path: ${{ steps.scan.outputs.json }}
+        path: ./results.json
         compression-level: 1
     - name: setup python
       uses: actions/setup-python@v5
@@ -32,6 +32,6 @@ runs:
       if: ${{ success() || failure() }}
       shell: bash
       env:
-        path: ${{ steps.scan.outputs.json }}
+        path: ./results.json
       run: |
         python ./.github/actions/show_results.py -f $path
