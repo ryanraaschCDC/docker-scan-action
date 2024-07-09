@@ -12,12 +12,7 @@ runs:
     - name: Run anchore/grype on docker container
       id: scan
       shell: bash
-      with:
-        image: "localbuild/testimage:latest"
-        fail-build: true #change to true to fail if security issues found
-        severity-cutoff: high
-        output-format: json
-      run: grype -o $output-format --fail-on $severity-cutoff $image
+      run: grype -o json --fail-on high localbuild/testimage:latest
     - uses: actions/upload-artifact@v4
       if: ${{ success() || failure() }}
       with:
