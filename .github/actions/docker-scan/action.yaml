@@ -12,7 +12,7 @@ runs:
     - name: Run anchore/grype on docker container
       id: scan
       shell: bash
-      run: grype -o json --fail-on high localbuild/testimage:latest
+      run: grype -o json --fail-on high localbuild/testimage:latest > ./results.json
     - uses: actions/upload-artifact@v4
       if: ${{ success() || failure() }}
       with:
