@@ -6,14 +6,18 @@ runs:
     - name: Build the container image
       shell: bash
       run: docker build . --file src/Dockerfile --tag localbuild/testimage:latest
-    - uses: anchore/scan-action@v3
+    - name: Install anchore/grype locally
+      shell: bash
+      run: curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s --
+    - name: Run anchore/grype on docker container
       id: scan
+      shell: bash
       with:
         image: "localbuild/testimage:latest"
         fail-build: true #change to true to fail if security issues found
         severity-cutoff: high
         output-format: json
-        by-cve: true
+      run: grype -o $output-format --fail-on $severity-cutoff $image
     - uses: actions/upload-artifact@v4
       if: ${{ success() || failure() }}
       with:
