@@ -8,7 +8,7 @@ runs:
       run: docker build . --file src/Dockerfile --tag localbuild/testimage:latest
     - name: Install anchore/grype locally
       shell: bash
-      run: curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s --
+      run: curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
     - name: Run anchore/grype on docker container
       id: scan
       shell: bash
